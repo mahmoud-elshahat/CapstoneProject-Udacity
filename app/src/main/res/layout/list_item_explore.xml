@@ -10,11 +10,12 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/request_user_image"
         android:layout_width="60dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:layout_height="60dp"
         android:layout_centerVertical="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/user_image"
+        android:layout_marginTop="16dp"
         android:src="@drawable/test" />
 
 
@@ -23,16 +24,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/request_user_image"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:text="User Name"
-        android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toStartOf="@id/request_user_confirm"
+        android:layout_toEndOf="@+id/request_user_image"
+        android:gravity="center_vertical"
         android:lines="2"
-android:gravity="center_vertical"
-        android:layout_toLeftOf="@id/request_user_confirm"
+        android:text="@string/fullName"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
 
@@ -40,21 +41,21 @@ android:gravity="center_vertical"
         android:id="@+id/request_user_confirm"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@drawable/rounded_button_confirm"
-        android:text="Add"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="16dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button_confirm"
+        android:text="@string/add"
+
         android:textColor="@color/white" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/gray"
         android:layout_below="@id/request_user_image"
-        android:layout_toRightOf="@id/request_user_image"
-        android:layout_marginLeft="10dp"
-        />
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/request_user_image"
+        android:background="@color/gray" />
 
 </RelativeLayout>

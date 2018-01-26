@@ -16,11 +16,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassword extends AppCompatActivity {
 
-    private EditText email;
     Button submit;
     TextView result;
     ProgressBar progressBar;
+    private EditText email;
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +29,18 @@ public class ForgotPassword extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        email= (EditText) findViewById(R.id.registered_emailid_forgot);
-        result= (TextView) findViewById(R.id.result);
-        progressBar= (ProgressBar) findViewById(R.id.forgot_par);
+        email = (EditText) findViewById(R.id.registered_emailid_forgot);
+        result = (TextView) findViewById(R.id.result);
+        progressBar = (ProgressBar) findViewById(R.id.forgot_par);
 
-        submit= (Button) findViewById(R.id.forgotBtn);
+        submit = (Button) findViewById(R.id.forgotBtn);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userEmail=email.getText().toString().trim();
+                String userEmail = email.getText().toString().trim();
 
-                if(userEmail.isEmpty())
-                {
-                    email.setError("Enter your mail !");
+                if (userEmail.isEmpty()) {
+                    email.setError(getResources().getString(R.string.empty));
                     return;
                 }
 
@@ -54,7 +54,7 @@ public class ForgotPassword extends AppCompatActivity {
 
                                 } else {
                                     result.setText(R.string.forgot_email_wrong);
-                               }
+                                }
                                 progressBar.setVisibility(View.GONE);
                             }
                         });

@@ -136,7 +136,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
                                     notifyItemRemoved(position);
 
                                     ContentValues values = new ContentValues();
-                                    values.put(DataProvider.USER_ID,client.getId());
+                                    values.put(DataProvider.USER_ID, client.getId());
                                     values.put(DataProvider.NAME,
                                             client.username);
                                     values.put(DataProvider.CHANNEL_ID,
@@ -168,7 +168,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
             @Override
             public void onClick(View v) {
 
-                progressDialog = ProgressDialog.show(context, "Processing", "Ignore Request from "
+                progressDialog = ProgressDialog.show(context, context.getResources().getString(R.string.processing)
+                        , R.string.igonre
                         + clients.get(position).username);
                 progressDialog.setCancelable(false);
 
@@ -186,10 +187,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
                                 if (task.isSuccessful()) {
                                     MainActivity.current.getReceivedRequests().remove(client.getId());
                                     databaseReference.child(MainActivity.current.getId()).setValue(MainActivity.current);
-                                    Toast.makeText(context, "Request has been deleted successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, R.string.deleted, Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 } else {
-                                    Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                             }
@@ -198,7 +199,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

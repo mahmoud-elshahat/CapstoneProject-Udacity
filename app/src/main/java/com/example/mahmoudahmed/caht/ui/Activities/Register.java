@@ -43,26 +43,20 @@ import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
 public class Register extends AppCompatActivity {
 
-    private TextView login;
+    public static final int PICK_IMAGE = 1;
     public static String TAG = "Firebase";
-
+    CircleImageView profile;
+    Bitmap bitmap;
+    private TextView login;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-
     private EditText name;
     private EditText email;
     private EditText pwd;
     private EditText confirmPwd;
     private ProgressBar progressBar;
     private DatabaseReference databaseReference;
-
     private SignUpValidation validation;
-
-    public static final int PICK_IMAGE = 1;
-    CircleImageView profile;
-
-    Bitmap bitmap;
-
     private StorageReference mStorageRef;
 
     @Override
@@ -116,33 +110,32 @@ public class Register extends AppCompatActivity {
 
 
         if (validation.isEmptyEmail())
-            email.setError("please fill this");
+            email.setError(getResources().getString(R.string.empty));
         if (validation.isEmptyName())
-            name.setError("please fill this");
+            name.setError(getResources().getString(R.string.empty));
         if (validation.isEmptyPassword())
-            pwd.setError("please fill this");
+            pwd.setError(getResources().getString(R.string.empty));
         if (validation.isEmptyName() || validation.isEmptyEmail() || validation.isEmptyPassword())
             return;
 
         //Password Length
         if (!validation.isAcceptablePassword()) {
-            pwd.setError("at least 8 character");
+            pwd.setError(getResources().getString(R.string.constaint1));
             return;
         }
         //email validation
         if (!validation.isValidEmail()) {
-            email.setError("not valid mail");
+            email.setError(getResources().getString(R.string.constaint2));
             return;
         }
         //Password matching
         if (!validation.isMatch()) {
-            confirmPwd.setError("password not match");
+            confirmPwd.setError(getResources().getString(R.string.constaint3));
             return;
         }
 
-        if(bitmap == null)
-        {
-            Toast.makeText(this, "Choose photo to continue", Toast.LENGTH_SHORT).show();
+        if (bitmap == null) {
+            Toast.makeText(this, R.string.photo, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -154,7 +147,7 @@ public class Register extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "This account maybe used or have network error",
+                            Toast.makeText(getApplicationContext(), R.string.error2,
                                     Toast.LENGTH_SHORT).show();
                         } else {
 
@@ -164,7 +157,7 @@ public class Register extends AppCompatActivity {
                             Client user = new Client(userId, emailId, username);
                             databaseReference.child(userId).setValue(user);
 
-                            String path = "images/" + userId ;
+                            String path = "images/" + userId;
 
                             FirebaseUser xUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -193,7 +186,7 @@ public class Register extends AppCompatActivity {
                             uploadTask.addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
-                                    Toast.makeText(Register.this, "Image Upload error please try again later", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Register.this, R.string.photo3, Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
@@ -204,7 +197,6 @@ public class Register extends AppCompatActivity {
                                     finish();
                                 }
                             });
-
 
 
                         }
@@ -224,7 +216,7 @@ public class Register extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
 
             if (data == null) {
-                Toast.makeText(this, "Please Choose Image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.photo2, Toast.LENGTH_SHORT).show();
                 return;
             }
 

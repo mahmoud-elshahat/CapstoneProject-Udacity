@@ -40,30 +40,28 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Recycl
 
     DatabaseReference reference;
 
-    public void setClientsIds(ArrayList<String> clientsIds)
-    {
-        this.clientsIds=clientsIds;
-    }
-
     public ChatListAdapter(Context context) {
         this.context = context;
-        inflater=LayoutInflater.from(context);
-        clients=new ArrayList<>();
+        inflater = LayoutInflater.from(context);
+        clients = new ArrayList<>();
     }
 
+    public void setClientsIds(ArrayList<String> clientsIds) {
+        this.clientsIds = clientsIds;
+    }
 
     @Override
     public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view=inflater.inflate(R.layout.chat_list_item,null);
-        RecyclerHolder recyclerHolder=new RecyclerHolder(view);
+        View view = inflater.inflate(R.layout.chat_list_item, null);
+        RecyclerHolder recyclerHolder = new RecyclerHolder(view);
         return recyclerHolder;
     }
 
     @Override
     public void onBindViewHolder(final RecyclerHolder holder, final int position) {
 
-        reference= FirebaseDatabase.getInstance().getReference().child("users").child(clientsIds.get(position));
+        reference = FirebaseDatabase.getInstance().getReference().child("users").child(clientsIds.get(position));
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,7 +96,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Recycl
 
 
         //get Last Message
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child(MainActivity.current.getChannelsIds().get(position));
 
 
@@ -106,22 +104,18 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Recycl
             @Override
             public void onClick(View view) {
                 try {
-                    Intent i=new Intent(context, Chat.class);
-                    i.putExtra("object",clients.get(position));
-                    i.putExtra("channel_id",MainActivity.current.getChannelsIds().get(position));
+                    Intent i = new Intent(context, Chat.class);
+                    i.putExtra("object", clients.get(position));
+                    i.putExtra("channel_id", MainActivity.current.getChannelsIds().get(position));
                     context.startActivity(i);
 
-                }
-                catch (NullPointerException n)
-                {
+                } catch (NullPointerException n) {
 
                 }
 
             }
         });
     }
-
-
 
 
     @Override
@@ -137,8 +131,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Recycl
         public RecyclerHolder(View itemView) {
             super(itemView);
 
-            userName= (TextView) itemView.findViewById(R.id.user_name);
-            userImage= (CircleImageView) itemView.findViewById(R.id.user_image);
+            userName = (TextView) itemView.findViewById(R.id.user_name);
+            userImage = (CircleImageView) itemView.findViewById(R.id.user_image);
         }
     }
 }

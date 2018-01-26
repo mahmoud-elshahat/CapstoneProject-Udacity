@@ -40,19 +40,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.RecyclerHolder> {
 
+    public ArrayList<Integer> addedFriends;
     Context context;
     LayoutInflater inflater;
     ArrayList<Client> clients;
-
-    public ArrayList<Integer> addedFriends;
-
-    private DatabaseReference mDatabase;
-
     ProgressDialog progressDialog;
-
-    public void setClients(ArrayList<Client> clients) {
-        this.clients = clients;
-    }
+    private DatabaseReference mDatabase;
 
     public ExploreAdapter(Context context) {
         this.context = context;
@@ -60,6 +53,9 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
         inflater = LayoutInflater.from(context);
     }
 
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
+    }
 
     @Override
     public ExploreAdapter.RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -92,22 +88,20 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
         holder.userName.setText(clients.get(position).username);
 
 
-        if (MainActivity.current.getSentRequests() !=null &&(addedFriends.contains(position)
+        if (MainActivity.current.getSentRequests() != null && (addedFriends.contains(position)
                 || MainActivity.current.getSentRequests().contains(clients.get(position).getId()))) {
-            holder.add.setText("Cancel");
+            holder.add.setText(R.string.cancle);
             holder.add.setBackgroundResource(R.drawable.rounded_button_ignore);
             holder.add.setTextColor(Color.BLACK);
 
-        } else if(MainActivity.current.getFriendsIds()!=null &&
+        } else if (MainActivity.current.getFriendsIds() != null &&
                 MainActivity.current.getFriendsIds().contains(clients.get(position).getId())) {
-            holder.add.setText("Friends");
+            holder.add.setText(R.string.frineds);
             holder.add.setBackgroundResource(R.drawable.rounded_button_added);
             holder.add.setTextColor(Color.WHITE);
             holder.add.setEnabled(false);
-        }
-        else
-        {
-            holder.add.setText("Add");
+        } else {
+            holder.add.setText(R.string.add);
             holder.add.setBackgroundResource(R.drawable.rounded_button_confirm);
             holder.add.setTextColor(Color.WHITE);
         }
@@ -118,8 +112,10 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
             public void onClick(View v) {
 
                 //case add user "send request"
-                if (holder.add.getText().toString().toLowerCase().equals("add")) {
-                    progressDialog = ProgressDialog.show(context, "Processing", "Adding " + clients.get(position).username);
+                if (holder.add.getText().toString().toLowerCase().equals(R.string.add)) {
+                    progressDialog = ProgressDialog.show(context, context.getResources().getString(R.string.processing)
+                            , R.string.add  + clients.get(position).username);
+
                     //get added user id to add it
                     mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(clients.get(position).getId());
                     mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -145,15 +141,15 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
                                                 .child(MainActivity.current.getId());
                                         mDatabase.setValue(MainActivity.current);
 
-                                        Toast.makeText(context, "Request has been sent successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, R.string.sent, Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
 
                                         addedFriends.add(position);
-                                        holder.add.setText("Cancel");
+                                        holder.add.setText(R.string.cancle);
                                         holder.add.setBackgroundResource(R.drawable.rounded_button_ignore);
                                         holder.add.setTextColor(Color.BLACK);
                                     } else {
-                                        Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                     }
                                 }
@@ -163,14 +159,15 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });
 
                 } else {
 
-                    progressDialog = ProgressDialog.show(context, "Processing", "Cancel adding " + clients.get(position).username);
+                    progressDialog = ProgressDialog.show(context, context.getResources().getString(R.string.processing)
+                            , R.string.cancle + clients.get(position).username);
                     //get added user id to add it
 
                     mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(clients.get(position).getId());
@@ -192,15 +189,15 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
                                                 .child(MainActivity.current.getId());
                                         mDatabase.setValue(MainActivity.current);
 
-                                        Toast.makeText(context, "Request has been removed successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, R.string.sent, Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
 
                                         addedFriends.remove(Integer.valueOf(position));
-                                        holder.add.setText("Add");
+                                        holder.add.setText(R.string.add);
                                         holder.add.setBackgroundResource(R.drawable.rounded_button_confirm);
                                         holder.add.setTextColor(Color.WHITE);
                                     } else {
-                                        Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                     }
                                 }
@@ -210,7 +207,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });

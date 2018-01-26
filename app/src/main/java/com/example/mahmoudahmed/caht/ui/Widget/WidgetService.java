@@ -29,6 +29,7 @@ public class WidgetService extends RemoteViewsService {
         int appWidgetId;
 
         ArrayList<Client> userFriends;
+        RemoteViews views;
 
         ListProvider(Context context, Intent intent) {
             this.mContext = context;
@@ -39,7 +40,7 @@ public class WidgetService extends RemoteViewsService {
         }
 
         private void populateListItem() {
-            userFriends= new ArrayList<>();
+            userFriends = new ArrayList<>();
             String URL = "content://com.example.pc.movies.ContactProvider";
             Uri students = Uri.parse(URL);
             Cursor c = mContext.getContentResolver().query(students, null, null, null, null);
@@ -78,13 +79,10 @@ public class WidgetService extends RemoteViewsService {
 
         }
 
-
         @Override
         public int getCount() {
             return userFriends.size();
         }
-
-        RemoteViews views;
 
         @Override
         public RemoteViews getViewAt(final int position) {
@@ -96,7 +94,7 @@ public class WidgetService extends RemoteViewsService {
 
             Bundle extras = new Bundle();
             extras.putInt("pos", position);
-            extras.putParcelable("object",userFriends.get(position));
+            extras.putParcelable("object", userFriends.get(position));
             Intent fillInIntent = new Intent();
             fillInIntent.putExtras(extras);
             // Make it possible to distinguish the individual on-click

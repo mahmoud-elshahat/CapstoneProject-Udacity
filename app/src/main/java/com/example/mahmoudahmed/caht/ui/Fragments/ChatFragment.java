@@ -27,14 +27,11 @@ import java.util.ArrayList;
 public class ChatFragment extends Fragment {
 
 
-    private RecyclerView recyclerView;
     DatabaseReference databaseReference;
-
-    private View rootView;
-
     ChatListAdapter chatListAdapter;
-
-    ArrayList<String>userFriendsIds;
+    ArrayList<String> userFriendsIds;
+    private RecyclerView recyclerView;
+    private View rootView;
 
     public ChatFragment() {
 
@@ -61,11 +58,10 @@ public class ChatFragment extends Fragment {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Client current= dataSnapshot.getValue(Client.class);
-                userFriendsIds=current.getFriendsIds();
-                if(userFriendsIds == null)
-                {
-                    userFriendsIds= new ArrayList<>();
+                Client current = dataSnapshot.getValue(Client.class);
+                userFriendsIds = current.getFriendsIds();
+                if (userFriendsIds == null) {
+                    userFriendsIds = new ArrayList<>();
                 }
                 chatListAdapter.setClientsIds(userFriendsIds);
                 recyclerView.setAdapter(chatListAdapter);
@@ -91,18 +87,21 @@ public class ChatFragment extends Fragment {
 
                     if (dataSnapshot.getKey().equals("friendsIds")) {
                         ArrayList<String> friends = (ArrayList<String>) dataSnapshot.getValue();
-                        userFriendsIds=friends;
-                        chatListAdapter.notifyItemInserted(userFriendsIds.size()-1);
+                        userFriendsIds = friends;
+                        chatListAdapter.notifyItemInserted(userFriendsIds.size() - 1);
 
                     }
 
                 }
+
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
                 }
+
                 @Override
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }

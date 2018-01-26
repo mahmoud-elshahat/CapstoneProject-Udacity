@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:layoutDirection="locale"
-
     android:background="@color/white"
+
+    android:layoutDirection="locale"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/request_user_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="16dp"
         android:layout_centerVertical="true"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/user_image"
         android:src="@drawable/ic_launcher" />
 
 
@@ -23,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="16dp"
-        android:layout_toRightOf="@+id/request_user_image"
-        android:text="User Name"
+        android:layout_toEndOf="@+id/request_user_image"
+        android:text="@string/fullName"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -34,34 +35,34 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/request_user_name"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/request_user_image">
+        android:layout_toEndOf="@+id/request_user_image">
 
         <Button
             android:id="@+id/request_user_confirm"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/rounded_button_confirm"
-            android:text="Confirm"
+            android:text="@string/confirm"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/request_user_ignore"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:background="@drawable/rounded_button_ignore"
-            android:text="Ignore" />
+            android:text="@string/ignore" />
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/gray"
         android:layout_below="@id/container"
-        android:layout_toRightOf="@id/request_user_image"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        />
+        android:layout_toEndOf="@id/request_user_image"
+        android:background="@color/gray" />
 
 
 </RelativeLayout>

@@ -53,10 +53,10 @@
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
 
-    
+
     <string name="action_logout">Logout</string>
     <string name="profile">Profile</string>
-    
+
 
     <string name="hello_blank_fragment"></string>
 
@@ -70,4 +70,46 @@
     <string name="chat">Chat</string>
     <string name="requests">Requests</string>
     <string name="explore">Find</string>
+    <string name="error">You ma have internet connection problem</string>
+    <string name="no_requests">You don\'t have any requests yet , go and add your friends now !</string>
+    <string name="no_users">There is No user registered yet ! :(</string>
+    <string name="search_empty">Unfortunately there was no match found for</string>
+    <string name="processing">Processing</string>
+    <string name="igonre">Ignore Request from</string>
+    <string name="deleted">Request has been deleted successfully</string>
+    <string name="some_error">Some Error happen</string>
+    <string name="cancle">Cancel</string>
+    <string name="frineds">Friends</string>
+    <string name="add">Add</string>
+    <string name="sent">Request has been sent successfully</string>
+    <string name="empty">please fill this</string>
+    <string name="constaint1">at least 8 character</string>
+    <string name="constaint2">Not valid mail</string>
+    <string name="constaint3">Password not match</string>
+    <string name="photo">Choose photo to continue</string>
+    <string name="error2">This account maybe used or have network error</string>
+    <string name="photo2">Please Choose Image</string>
+    <string name="photo3">Image Upload error please try again later</string>
+    <string name="not_provided">Not provided</string>
+    <string name="photo_error">Image upload failed</string>
+    <string name="photo_done" >Image upload failed</string>
+    <string name="get_data">getting data from server</string>
+    <string name="not_recorded">this account not match any record , or problem with your internet !</string>
+    <string name="auth_fail">Authentication failed</string>
+    <string name="send">Send</string>
+    <string name="enter">Enter a message</string>
+    <string name="intro">Login And connect to your friends now !</string>
+    <string name="or">Or</string>
+    <string name="google">Log in with Google</string>
+    <string name="facebook_login">Log in with Facebook</string>
+    <string name="twitter">Log in with Twitter</string>
+    <string name="example">example@example.com</string>
+    <string name="message">Simple Message</string>
+    <string name="date">12:00 AM</string>
+    <string name="confirm">Confirm</string>
+    <string name="ignore">Ignore</string>
+    <string name="widget_title">Friends - Click to chat !</string>
+    <string name="user_image">Profile Image</string>
+    <string name="choose">Choose image to upload</string>
+    <string name="send_message">Sending message</string>
 </resources>

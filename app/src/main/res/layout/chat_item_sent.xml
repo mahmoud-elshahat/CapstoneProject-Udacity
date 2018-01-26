@@ -3,41 +3,38 @@
     android:id="@+id/llaa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" 
-    android:gravity="right"
+    android:background="@android:color/transparent"
+    android:gravity="end"
     android:layoutDirection="locale"
 
-    android:background="@android:color/transparent"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12:00 AM"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="2dp"
-        android:textColor="#444444"
-        android:paddingRight="10dp"
-        android:gravity="end"/>
+        android:gravity="end"
+        android:paddingEnd="10dp"
+        android:text="@string/date"
+        android:textColor="#444444" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/sent_message"
-        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
->
+        android:background="@drawable/sent_message">
 
         <TextView
             android:id="@+id/content"
-            android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Simple"
-             android:layout_margin="3dp"
+            android:layout_margin="3dp"
             android:gravity="start"
-            android:textSize="20sp"/>
+            android:text="@string/message"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
 
 
     </FrameLayout>

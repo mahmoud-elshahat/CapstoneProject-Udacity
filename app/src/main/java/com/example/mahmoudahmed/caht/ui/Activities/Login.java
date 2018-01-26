@@ -54,8 +54,9 @@ public class Login extends AppCompatActivity {
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "ISHk6t4fmXIQuM1zr1XTJEQMk";
     private static final String TWITTER_SECRET = "nuJ6AQyeH1OfzZF2wYlQKNSF0NrkkHjH1cGiprkB8s2NoJuH9y";
-
-
+    private static final int RC_SIGN_IN = 9001;
+    public static String TAG = "Firebase";
+    CheckBox showPassword;
     private TextView signUp;
     private TextView forgotPassword;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -63,11 +64,7 @@ public class Login extends AppCompatActivity {
     private Button Login;
     private EditText email;
     private EditText password;
-    public static String TAG = "Firebase";
-    CheckBox showPassword;
     private SignInButton google;
-
-    private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
 
     private CallbackManager mCallbackManager;
@@ -119,11 +116,6 @@ public class Login extends AppCompatActivity {
         });
 
 
-
-
-
-
-
         //Facebook
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -138,13 +130,11 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
                 // ...
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
                 // ...
             }
         });
@@ -161,7 +151,6 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void failure(TwitterException exception) {
-                Log.d("TwitterKit", "Login with Twitter failure", exception);
             }
         });
 
@@ -184,10 +173,9 @@ public class Login extends AppCompatActivity {
                 .build();
 
 
-
-        fakeFacebook= (Button) findViewById(R.id.fakeFacebook);
-        fakeGoogle= (Button) findViewById(R.id.fakeGoogle);
-        fakeTwitter= (Button) findViewById(R.id.fakeTwitter);
+        fakeFacebook = (Button) findViewById(R.id.fakeFacebook);
+        fakeGoogle = (Button) findViewById(R.id.fakeGoogle);
+        fakeTwitter = (Button) findViewById(R.id.fakeTwitter);
 
         fakeFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,8 +197,8 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
     private void handleTwitterSession(TwitterSession session) {
-        Log.d(TAG, "handleTwitterSession:" + session);
 
         AuthCredential credential = TwitterAuthProvider.getCredential(
                 session.getAuthToken().token,
@@ -220,24 +208,19 @@ public class Login extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"There is a problem with login please try again !",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            FirebaseUser current=mAuth.getCurrentUser();
-                            String email=current.getEmail();
-                            if(email==null)
-                            {
-                                email="anonymous.anonymous.com";
+                            Toast.makeText(getApplicationContext(), "There is a problem with login please try again !", Toast.LENGTH_LONG).show();
+                        } else {
+                            FirebaseUser current = mAuth.getCurrentUser();
+                            String email = current.getEmail();
+                            if (email == null) {
+                                email = "anonymous.anonymous.com";
                             }
 
-                            String displayName=current.getEmail();
-                            if(displayName==null)
-                            {
-                                displayName="UserName";
+                            String displayName = current.getEmail();
+                            if (displayName == null) {
+                                displayName = "UserName";
                             }
 
                             databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -273,17 +256,15 @@ public class Login extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
 
-                            FirebaseUser current=mAuth.getCurrentUser();
-                            String email=current.getEmail();
-                            if(email==null)
-                            {
-                                email="anonymous.anonymous.com";
+                            FirebaseUser current = mAuth.getCurrentUser();
+                            String email = current.getEmail();
+                            if (email == null) {
+                                email = "anonymous.anonymous.com";
                             }
 
-                            String displayName=current.getEmail();
-                            if(displayName==null)
-                            {
-                                displayName="UserName";
+                            String displayName = current.getEmail();
+                            if (displayName == null) {
+                                displayName = "UserName";
                             }
 
                             databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -318,7 +299,7 @@ public class Login extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.auth_fail, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE) {
             loginButtonTwitter.onActivityResult(requestCode, resultCode, data);
@@ -346,21 +327,19 @@ public class Login extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
 
-                            FirebaseUser current=mAuth.getCurrentUser();
-                            String email=current.getEmail();
-                            if(email==null)
-                            {
-                                email="anonymous.anonymous.com";
+                            FirebaseUser current = mAuth.getCurrentUser();
+                            String email = current.getEmail();
+                            if (email == null) {
+                                email = "anonymous.anonymous.com";
                             }
 
-                            String displayName=current.getEmail();
-                            if(displayName==null)
-                            {
-                                displayName="UserName";
+                            String displayName = current.getEmail();
+                            if (displayName == null) {
+                                displayName = "UserName";
                             }
 
                             databaseReference = FirebaseDatabase.getInstance().getReference("users");
-                            String userId =current.getUid();
+                            String userId = current.getUid();
                             Client user = new Client(mAuth.getCurrentUser().getUid(), current.getEmail(), current.getDisplayName());
                             databaseReference.child(userId).setValue(user);
 
@@ -380,11 +359,11 @@ public class Login extends AppCompatActivity {
         String passwordText = password.getText().toString().trim();
 
         if (emailText.length() < 1) {
-            email.setError("Please fill this");
+            email.setError(getResources().getString(R.string.empty));
             return;
         }
         if (passwordText.length() < 1) {
-            password.setError("Please fill this");
+            password.setError(getResources().getString(R.string.empty));
             return;
         }
 
@@ -397,7 +376,7 @@ public class Login extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "this account not match any record , or problem with your internet !", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.not_recorded, Toast.LENGTH_LONG).show();
                         } else {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
@@ -407,9 +386,6 @@ public class Login extends AppCompatActivity {
                 });
 
     }
-
-
-
 
 
 }

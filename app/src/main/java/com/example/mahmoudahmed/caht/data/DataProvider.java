@@ -13,31 +13,31 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
-
-import java.util.HashMap;
 
 public class DataProvider extends ContentProvider {
-
-    static final String PROVIDER_NAME = "com.example.pc.movies.ContactProvider";
-
-    static final String URL1 = "content://" + PROVIDER_NAME + "/users";
-    public static final Uri CONTENT_URL1 = Uri.parse(URL1);
-
 
     public static final String ID = "id";
     public static final String USER_ID = "user_id";
     public static final String CHANNEL_ID = "channel_id";
     public static final String NAME = "name";
-
-
+    static final String PROVIDER_NAME = "com.example.pc.movies.ContactProvider";
+    static final String URL1 = "content://" + PROVIDER_NAME + "/users";
+    public static final Uri CONTENT_URL1 = Uri.parse(URL1);
     static final UriMatcher uriMatcher;
 
 
     static final int USERS = 1;
     static final int USERS_ID = 2;
+    static final String DATABASE_NAME = "udacity";
+    static final String TABLE_NAME_USERS = "users";
+    static final int DATABASE_VERSION = 1;
+    static final String QUERY1 =
+            "CREATE TABLE " + TABLE_NAME_USERS +
 
-
+                    "(id INTEGER PRIMARY KEY , " +
+                    "user_id TEXT NOT NULL ," +
+                    "name TEXT NOT NULL ," +
+                    "channel_id TEXT NOT NULL ) ";
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -48,29 +48,13 @@ public class DataProvider extends ContentProvider {
 
     private SQLiteDatabase sql;
 
-    static final String DATABASE_NAME = "udacity";
-    static final String TABLE_NAME_USERS = "users";
-    static final int DATABASE_VERSION = 1;
-    static final String QUERY1 =
-            "CREATE TABLE " + TABLE_NAME_USERS +
-
-                    "(id INTEGER PRIMARY KEY , " +
-                    "user_id TEXT NOT NULL ," +
-                    "name TEXT NOT NULL ,"+
-                    "channel_id TEXT NOT NULL ) ";
-
-
-
     @Override
     public boolean onCreate() {
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 
         sql = dbHelper.getWritableDatabase();
-        if (sql != null) {
-            return true;
-        }
+        return sql != null;
 
-        return false;
     }
 
     @Nullable
@@ -121,7 +105,7 @@ public class DataProvider extends ContentProvider {
             return _uri;
         }
 
-        throw new SQLException("Failed to add a record into " + uri+"  ");
+        throw new SQLException("Failed to add a record into " + uri + "  ");
 
     }
 

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,12 +35,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends AppCompatActivity {
 
 
+    public static final int PICK_IMAGE = 1;
     CircleImageView imageView;
     TextView email, name;
     Bitmap bitmap;
-
-    public static final int PICK_IMAGE = 1;
-
     private AdView mAdView;
 
 
@@ -59,7 +56,7 @@ public class Profile extends AppCompatActivity {
 
         email = (TextView) findViewById(R.id.profile_user_email);
         if (user.getEmail() == null || user.getEmail().equals("")) {
-            email.setText("Not provided");
+            email.setText(R.string.not_provided);
         } else {
             email.setText(user.getEmail());
         }
@@ -67,7 +64,7 @@ public class Profile extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.profile_user_name);
         if (user.getDisplayName() == null || user.getDisplayName().equals("")) {
-            name.setText("Not provided");
+            name.setText(R.string.not_provided);
         } else {
             name.setText(user.getDisplayName());
         }
@@ -121,7 +118,7 @@ public class Profile extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
 
             if (data == null) {
-                Toast.makeText(this, "Please Choose Image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.photo2, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -143,12 +140,12 @@ public class Profile extends AppCompatActivity {
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(Profile.this, "Image upload failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, R.string.photo_error, Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(Profile.this, "Image upload successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, R.string.photo_done, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -173,7 +170,6 @@ public class Profile extends AppCompatActivity {
                 return bitmap;
 
             } catch (Exception e) {
-                Log.e("image", "exception  " + e.getMessage());
             }
             return null;
         }

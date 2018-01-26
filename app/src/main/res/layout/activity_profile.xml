@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,13 +12,13 @@
     tools:context=".ui.Activities.Profile">
 
     <TextView
-        android:padding="16dp"
-
         android:id="@+id/profile_user_name"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center"
+        android:padding="16dp"
         android:text="@string/owner"
         android:textColor="@color/black"
         android:textSize="24sp" />
@@ -26,28 +26,30 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/profile"
-        />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:layout_width="200dp"
+            android:contentDescription="@string/user_image"
+            android:layout_height="200dp"
+            android:src="@drawable/profile" />
+
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
-            app:rippleColor="@color/colorPrimary"
-            android:clickable="true"
-            app:backgroundTint="@color/colorPrimaryDark"
-            android:src="@drawable/ic_photo_camera"
-            android:layout_alignRight="@id/profile"
             android:layout_alignBottom="@id/profile"
+            android:layout_alignEnd="@id/profile"
+            android:clickable="true"
+            android:contentDescription="@string/choose"
+            android:onClick="selectPicture"
+            android:src="@drawable/ic_photo_camera"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:fabSize="mini"
 
-            android:onClick="selectPicture"/>
+            app:rippleColor="@color/colorPrimary" />
 
 
     </RelativeLayout>
@@ -55,9 +57,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:text="@string/email_about"
-        android:layout_gravity="center_horizontal"
         android:textAllCaps="true"
         android:textColor="@color/white_greyish"
         android:textStyle="bold" />
@@ -65,8 +67,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
         android:background="@color/colorPrimary"></View>
 
@@ -75,27 +77,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="example@example.com"
         android:gravity="center_horizontal"
+        android:text="@string/example"
         android:textColor="@color/black" />
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
 
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
-</RelativeLayout>
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+    </RelativeLayout>
 
 
 </LinearLayout>

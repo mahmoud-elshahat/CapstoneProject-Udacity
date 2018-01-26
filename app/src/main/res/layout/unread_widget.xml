@@ -9,20 +9,18 @@
         android:id="@+id/recipe_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Friends - Click to chat !"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:gravity="center"
         android:background="@color/colorPrimary"
+        android:gravity="center"
         android:padding="16dp"
-        />
+        android:text="@string/widget_title"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listViewWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 
 </LinearLayout>

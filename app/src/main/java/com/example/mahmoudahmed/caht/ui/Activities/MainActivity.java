@@ -28,12 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
 
-    private FragmentsAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
-    TabLayout tabLayout;
-
     public static Client current;
+    TabLayout tabLayout;
+    private FragmentsAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +44,25 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        mSectionsPagerAdapter = new FragmentsAdapter(getSupportFragmentManager(),this);
+        mSectionsPagerAdapter = new FragmentsAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        String id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final ProgressDialog dialog=ProgressDialog.show(this,"Loading","getting data from server");
+        final ProgressDialog dialog = ProgressDialog.show(this, getResources().getString(R.string.processing)
+                , getResources().getString(R.string.get_data));
         dialog.setCancelable(false);
 
 
-        if(isOnline())
-        {
+        if (isOnline()) {
             //get current user info
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(id);
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    current= dataSnapshot.getValue(Client.class);
+                    current = dataSnapshot.getValue(Client.class);
                     dialog.dismiss();
                 }
 
@@ -74,19 +72,16 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-        }
-        else
-        {
+        } else {
             final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                     .coordinatorLayout);
 
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout,
-                            "Connection error , please enable your internet", Snackbar.LENGTH_LONG);
+                            R.string.error, Snackbar.LENGTH_LONG);
             snackbar.show();
             dialog.dismiss();
         }
-
 
 
     }
@@ -100,30 +95,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id =item.getItemId();
+        int id = item.getItemId();
 
-        if(id==R.id.profile)
-        {
-            Intent intent=new Intent(getApplicationContext(),Profile.class);
+        if (id == R.id.profile) {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
             startActivity(intent);
         }
-        if(id==R.id.logout_menu)
-        {
+        if (id == R.id.logout_menu) {
             FirebaseAuth.getInstance().signOut();
-            Intent intent=new Intent(getApplicationContext(),Login.class);
+            Intent intent = new Intent(getApplicationContext(), Login.class);
             finish();
             startActivity(intent);
         }
-        return  true;
+        return true;
     }
 
     @Override
     public void onBackPressed() {
-        if(mViewPager.getCurrentItem() == 0) {
-                super.onBackPressed();
-        }
-        else
-        {
+        if (mViewPager.getCurrentItem() == 0) {
+            super.onBackPressed();
+        } else {
             mViewPager.setCurrentItem(0);
         }
     }

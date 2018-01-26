@@ -29,17 +29,15 @@ import java.util.ArrayList;
 
 public class RequestsFragment extends Fragment {
 
-    private View rootView;
     DatabaseReference firebaseDatabase;
     ProgressBar progressBar;
     TextView emptyView;
     RecyclerView recyclerView;
-
     ArrayList<Client> clientsThatSentRequests;
+    ArrayList<Client> allClients;
+    private View rootView;
     private DatabaseReference databaseReference;
     private RequestAdapter requestAdapter;
-
-    ArrayList<Client> allClients;
 
     public RequestsFragment() {
 
@@ -164,7 +162,7 @@ public class RequestsFragment extends Fragment {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        emptyView.setText("You ma have internet connection problem");
+                        emptyView.setText(R.string.error);
                         emptyView.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                     }
@@ -172,7 +170,7 @@ public class RequestsFragment extends Fragment {
 
 
                 if (MainActivity.current.getReceivedRequests() == null) {
-                    emptyView.setText("You don't have any requests yet , go and add your friends now !");
+                    emptyView.setText(R.string.no_requests);
                     emptyView.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
                 }

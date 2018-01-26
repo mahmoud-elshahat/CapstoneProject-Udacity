@@ -85,10 +85,10 @@
 
 
         <provider
-            android:authorities="com.example.pc.movies.ContactProvider"
             android:name=".data.DataProvider"
-            android:multiprocess="true"
+            android:authorities="com.example.pc.movies.ContactProvider"
             android:exported="true"
+            android:multiprocess="true"
 
             />
 

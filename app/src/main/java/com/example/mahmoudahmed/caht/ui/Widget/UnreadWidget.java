@@ -18,7 +18,6 @@ public class UnreadWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
 
-
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.unread_widget);
 
 
@@ -43,7 +42,6 @@ public class UnreadWidget extends AppWidgetProvider {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
-
 
 
     @Override

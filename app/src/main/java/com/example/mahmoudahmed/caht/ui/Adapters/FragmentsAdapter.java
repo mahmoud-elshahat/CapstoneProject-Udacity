@@ -15,25 +15,23 @@ public class FragmentsAdapter extends FragmentPagerAdapter {
 
     Context context;
 
-    public FragmentsAdapter(FragmentManager fm , Context context)
-    {
+    public FragmentsAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
     public Fragment getItem(int position) {
 
-        switch (position)
-        {
-            case 0 :
+        switch (position) {
+            case 0:
                 return new ChatFragment();
-            case 1 :
+            case 1:
                 return new RequestsFragment();
-            case 2 :
+            case 2:
                 return new ExploreFragment();
 
-                //this case not going to be happen anyway
+            //this case not going to be happen anyway
             default:
                 return new RequestsFragment();
         }
@@ -45,20 +43,18 @@ public class FragmentsAdapter extends FragmentPagerAdapter {
     }
 
 
-
     @Override
     public CharSequence getPageTitle(int position) {
 
-        switch (position)
-        {
-            case 0 :
+        switch (position) {
+            case 0:
                 return context.getResources().getString(R.string.chat);
-            case 1 :
+            case 1:
                 return context.getResources().getString(R.string.requests);
-            case 2 :
+            case 2:
                 return context.getResources().getString(R.string.explore);
             default:
-                return "Out";
+                return context.getResources().getString(R.string.chat);
         }
 
     }

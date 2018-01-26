@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,17 +33,13 @@ import java.util.ArrayList;
 public class ExploreFragment extends Fragment {
 
     TextView empty;
+    DatabaseReference databaseReference;
+    PersistentSearchView searchView;
+    ExploreAdapter exploreAdapter;
+    ProgressBar progressBar;
     private View rootView;
-
     private ArrayList<Client> clients;
     private RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-
-    PersistentSearchView searchView;
-
-    ExploreAdapter exploreAdapter;
-
-    ProgressBar progressBar;
 
     public ExploreFragment() {
 
@@ -151,27 +146,21 @@ public class ExploreFragment extends Fragment {
             public void onSearchTermChanged(String term) {
                 //filtering items here
 
-                if (clients == null || clients.size() ==0 || term.equals(" "))
-                {
+                if (clients == null || clients.size() == 0 || term.equals(" ")) {
                     return;
                 }
 
-                ArrayList<Client>tempClients=new ArrayList<>();
-                for(int i=0;i<clients.size();i++)
-                {
-                    if(clients.get(i).username.toLowerCase().contains(term.toLowerCase().trim()))
-                    {
+                ArrayList<Client> tempClients = new ArrayList<>();
+                for (int i = 0; i < clients.size(); i++) {
+                    if (clients.get(i).username.toLowerCase().contains(term.toLowerCase().trim())) {
                         tempClients.add(clients.get(i));
                     }
                 }
 
-                if(tempClients.size()==0)
-                {
-                    empty.setText("Unfortunately there was no match found for ( " + term + " )");
+                if (tempClients.size() == 0) {
+                    empty.setText(R.string.search_empty+"( " + term + " )");
                     empty.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     empty.setVisibility(View.GONE);
                 }
                 exploreAdapter.setClients(tempClients);
@@ -206,18 +195,13 @@ public class ExploreFragment extends Fragment {
         });
 
 
-
-
-
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long size = dataSnapshot.getChildrenCount();
                 if (size == 0) {
-                    Toast.makeText(getActivity(), "There is No user registered yet ! :( ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.no_users, Toast.LENGTH_LONG).show();
                     return;
                 }
                 clients = new ArrayList<Client>();
@@ -239,7 +223,7 @@ public class ExploreFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.v("here error", "Failed to read value.");
+
             }
         });
 

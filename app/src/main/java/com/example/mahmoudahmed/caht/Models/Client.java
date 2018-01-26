@@ -8,6 +8,17 @@ import java.util.ArrayList;
 
 
 public class Client implements Parcelable {
+    public static final Creator<Client> CREATOR = new Creator<Client>() {
+        @Override
+        public Client createFromParcel(Parcel source) {
+            return new Client(source);
+        }
+
+        @Override
+        public Client[] newArray(int size) {
+            return new Client[size];
+        }
+    };
     public String id;
     public String email;
     public String username;
@@ -15,12 +26,6 @@ public class Client implements Parcelable {
     private ArrayList<String> receivedRequests;
     private ArrayList<String> friendsIds;
     private ArrayList<String> channelsIds;
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
     public Client(Parcel input) {
         id = input.readString();
@@ -42,6 +47,10 @@ public class Client implements Parcelable {
         this.username = displayName;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -53,18 +62,6 @@ public class Client implements Parcelable {
         parcel.writeList(friendsIds);
         parcel.writeList(channelsIds);
     }
-
-    public static final Creator<Client> CREATOR = new Creator<Client>() {
-        @Override
-        public Client createFromParcel(Parcel source) {
-            return new Client(source);
-        }
-
-        @Override
-        public Client[] newArray(int size) {
-            return new Client[size];
-        }
-    };
 
     public String getId() {
         return id;
@@ -93,6 +90,7 @@ public class Client implements Parcelable {
     public void setFriendsIds(ArrayList<String> friendsIds) {
         this.friendsIds = friendsIds;
     }
+
     public ArrayList<String> getChannelsIds() {
         return channelsIds;
     }

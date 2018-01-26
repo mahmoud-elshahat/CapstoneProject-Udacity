@@ -4,27 +4,27 @@ package com.example.mahmoudahmed.caht.Models;
  * Created by PC on 1/5/2017.
  */
 
-public class Message  {
+public class Message {
+    public String date;
+    public boolean fromSender;
     private String content;
     private String reciver;
     private String sender;
-    public String date;
-    public boolean fromSender;
     private boolean read;
 
-    public Message(String content , String reciver , String sender , String date )
+    public Message(String content, String reciver, String sender, String date)
 
     {
-        fromSender=true;
-        this.content=content;
-        this.reciver=reciver;
-        this.sender=sender;
-        this.date=date;
-        this.read=false;
+        fromSender = true;
+        this.content = content;
+        this.reciver = reciver;
+        this.sender = sender;
+        this.date = date;
+        this.read = false;
     }
-    public Message()
-    {
-        fromSender=true;
+
+    public Message() {
+        fromSender = true;
     }
 
     public String getContent() {

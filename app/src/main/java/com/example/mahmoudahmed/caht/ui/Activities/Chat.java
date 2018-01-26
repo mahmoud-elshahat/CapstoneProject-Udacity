@@ -27,13 +27,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Chat extends AppCompatActivity {
+    String channelId;
     private ListView list;
     private EditText text;
     private Client client;
     private ArrayList<Message> messages;
     private DatabaseReference databaseReference;
-
-    String channelId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,7 @@ public class Chat extends AppCompatActivity {
         list = (ListView) findViewById(R.id.chatList);
         list.setAdapter(conversationAddapter);
 
-        if(isOnline())
-        {
+        if (isOnline()) {
             databaseReference = FirebaseDatabase.getInstance().getReference().child(channelId);
             databaseReference.addChildEventListener(new ChildEventListener() {
                 @Override
@@ -84,9 +82,7 @@ public class Chat extends AppCompatActivity {
 
                 }
             });
-        }
-        else
-        {
+        } else {
 
             String URL = "content://com.example.pc.movies.ContactProvider/messages";
             Uri students = Uri.parse(URL);
