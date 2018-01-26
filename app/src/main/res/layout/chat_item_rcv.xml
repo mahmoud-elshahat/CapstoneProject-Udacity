@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llaa"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layoutDirection="locale"
+    android:background="@android:color/transparent"
+    >
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/received_message"
+        android:layout_gravity="start"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/content"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simple Message"
+            android:layout_margin="3dp"
+            android:layout_gravity="start"
+            android:textSize="20sp"/>
+
+    </FrameLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00 AM"
+        android:layout_alignEnd="@id/container"
+        android:layout_alignRight="@id/container"
+        android:layout_below="@+id/container"
+        android:textColor="#444444"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="1dp"
+        android:gravity="end"
+        android:paddingLeft="10dp"
+        />
+
+</RelativeLayout>

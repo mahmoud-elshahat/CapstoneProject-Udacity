@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_products"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layoutDirection="locale"
+
+    android:layout_height="match_parent">
+
+
+    <org.cryse.widget.persistentsearch.PersistentSearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"
+        android:background="@color/colorPrimary"
+        app:persistentSV_searchTextColor="?android:textColorPrimary"
+        app:persistentSV_editTextColor="?android:textColorPrimary"
+        app:persistentSV_editHintText="Search"
+        app:persistentSV_editHintTextColor="?android:textColorHint"
+        app:persistentSV_displayMode="toolbar"
+        app:persistentSV_homeButtonMode="burger"
+        app:persistentSV_searchCardElevation="2dp"
+        app:persistentSV_customToolbarHeight="64dp"/>
+
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unfortunately there was no match found"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchView"
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>
