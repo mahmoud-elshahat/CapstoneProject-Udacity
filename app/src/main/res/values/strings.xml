@@ -78,9 +78,9 @@
     <string name="igonre">Ignore Request from</string>
     <string name="deleted">Request has been deleted successfully</string>
     <string name="some_error">Some Error happen</string>
-    <string name="cancle">Cancel</string>
-    <string name="frineds">Friends</string>
-    <string name="add">Add</string>
+    <string name="cancle">cancel</string>
+    <string name="frineds">friends</string>
+    <string name="add">add</string>
     <string name="sent">Request has been sent successfully</string>
     <string name="empty">please fill this</string>
     <string name="constaint1">at least 8 character</string>

@@ -49,11 +49,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
+        if(FirebaseAuth.getInstance().getCurrentUser()== null)
+        {
+            startActivity(new Intent(this,Login.class));
+            finish();
+        }
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         final ProgressDialog dialog = ProgressDialog.show(this, getResources().getString(R.string.processing)
                 , getResources().getString(R.string.get_data));
         dialog.setCancelable(false);
+
 
 
         if (isOnline()) {

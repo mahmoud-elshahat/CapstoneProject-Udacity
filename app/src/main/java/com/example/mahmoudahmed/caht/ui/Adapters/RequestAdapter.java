@@ -94,8 +94,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = ProgressDialog.show(context, "Processing", "Adding "
-                        + clients.get(position).username + " to friend list");
+                progressDialog = ProgressDialog.show(context, context.getResources().getString(R.string.processing), R.string.add
+                        + clients.get(position).username );
                 progressDialog.setCancelable(false);
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(clients.get(position).getId());
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

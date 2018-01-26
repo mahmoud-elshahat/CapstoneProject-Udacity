@@ -95,10 +95,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Recycl
         });
 
 
-        //get Last Message
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child(MainActivity.current.getChannelsIds().get(position));
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

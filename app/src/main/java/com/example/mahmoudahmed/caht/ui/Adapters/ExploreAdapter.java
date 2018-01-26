@@ -112,7 +112,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.Recycler
             public void onClick(View v) {
 
                 //case add user "send request"
-                if (holder.add.getText().toString().toLowerCase().equals(R.string.add)) {
+                if (holder.add.getText().toString().toLowerCase().equals(context.getResources().getString(R.string.add))) {
                     progressDialog = ProgressDialog.show(context, context.getResources().getString(R.string.processing)
                             , R.string.add  + clients.get(position).username);
 
