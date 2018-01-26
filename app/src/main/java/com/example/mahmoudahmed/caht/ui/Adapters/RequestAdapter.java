@@ -130,7 +130,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
                                     MainActivity.current.getFriendsIds().add(client.getId());
 
                                     databaseReference.child(MainActivity.current.getId()).setValue(MainActivity.current);
-                                    Toast.makeText(context, "You and " + client.username + " are friends now !", Toast.LENGTH_SHORT).show();
+
+                                    Toast.makeText(context, R.string.you_and + client.username + R.string.friends, Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                     clients.remove(position);
                                     notifyItemRemoved(position);
@@ -146,7 +147,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
                                             DataProvider.CONTENT_URL1, values);
 
                                 } else {
-                                    Toast.makeText(context, "S  ome Error happen", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                             }
@@ -155,7 +156,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.Recycler
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(context, "Some Error happen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.some_error, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

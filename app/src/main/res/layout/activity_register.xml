@@ -45,6 +45,7 @@
                 android:clickable="true"
                 android:onClick="selectPicture"
                 android:src="@drawable/ic_photo_camera"
+                android:contentDescription="@string/choose"
                 app:backgroundTint="@color/colorPrimaryDark"
                 app:fabSize="mini"
                 app:rippleColor="@color/colorPrimary" />

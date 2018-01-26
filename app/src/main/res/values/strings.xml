@@ -112,4 +112,7 @@
     <string name="user_image">Profile Image</string>
     <string name="choose">Choose image to upload</string>
     <string name="send_message">Sending message</string>
+    <string name="you_and">You and</string>
+    <string name="friends">are friends now !</string>
+    <string name="problem">There is a problem with login please try again !</string>
 </resources>

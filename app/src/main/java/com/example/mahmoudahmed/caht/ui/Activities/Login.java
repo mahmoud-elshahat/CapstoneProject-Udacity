@@ -210,7 +210,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "There is a problem with login please try again !", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.problem, Toast.LENGTH_LONG).show();
                         } else {
                             FirebaseUser current = mAuth.getCurrentUser();
                             String email = current.getEmail();
@@ -322,8 +322,7 @@ public class Login extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                            Toast.makeText(getApplicationContext(), R.string.auth_fail,
                                     Toast.LENGTH_SHORT).show();
                         } else {
 

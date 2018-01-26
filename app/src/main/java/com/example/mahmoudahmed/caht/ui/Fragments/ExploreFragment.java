@@ -158,7 +158,7 @@ public class ExploreFragment extends Fragment {
                 }
 
                 if (tempClients.size() == 0) {
-                    empty.setText(R.string.search_empty+"( " + term + " )");
+                    empty.setText(R.string.search_empty + term);
                     empty.setVisibility(View.VISIBLE);
                 } else {
                     empty.setVisibility(View.GONE);

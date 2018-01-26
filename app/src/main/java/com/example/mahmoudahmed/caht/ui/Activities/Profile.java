@@ -95,7 +95,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
 
-                Toast.makeText(Profile.this, "Connection error , please enable your internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, R.string.error, Toast.LENGTH_SHORT).show();
                 String imageUrl = "https://findicons.com/files/icons/1580/devine_icons_part_2/128/account_and_control.png";
                 new DownloadBitmap().execute(imageUrl);
             }
