@@ -217,14 +217,14 @@ public class Login extends AppCompatActivity {
                                 email = "anonymous.anonymous.com";
                             }
 
-                            String displayName = current.getEmail();
+                            String displayName = current.getDisplayName();
                             if (displayName == null) {
                                 displayName = "UserName";
                             }
 
                             databaseReference = FirebaseDatabase.getInstance().getReference("users");
                             String userId = databaseReference.push().getKey();
-                            Client user = new Client(mAuth.getCurrentUser().getUid(), current.getEmail(), current.getDisplayName());
+                            Client user = new Client(mAuth.getCurrentUser().getUid(), email, displayName);
                             databaseReference.child(userId).setValue(user);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -331,14 +331,14 @@ public class Login extends AppCompatActivity {
                                 email = "anonymous.anonymous.com";
                             }
 
-                            String displayName = current.getEmail();
+                            String displayName = current.getDisplayName();
                             if (displayName == null) {
                                 displayName = "UserName";
                             }
 
                             databaseReference = FirebaseDatabase.getInstance().getReference("users");
                             String userId = current.getUid();
-                            Client user = new Client(mAuth.getCurrentUser().getUid(), current.getEmail(), current.getDisplayName());
+                            Client user = new Client(mAuth.getCurrentUser().getUid(), email, displayName);
                             databaseReference.child(userId).setValue(user);
 
 

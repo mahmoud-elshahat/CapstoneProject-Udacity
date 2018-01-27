@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Caht.iml" filepath="$PROJECT_DIR$/Caht.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CapstoneProject-Udacity.iml" filepath="$PROJECT_DIR$/CapstoneProject-Udacity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
