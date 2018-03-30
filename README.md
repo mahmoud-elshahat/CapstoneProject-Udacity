@@ -1,4 +1,4 @@
-# Android Developer Nanodegree Capstone Project - Udactiy
+# Udactiy Android Developer Nanodegree Capstone Project
 
 Simple realtime chat app using firebase
 
