@@ -2,7 +2,7 @@
 
 Simple realtime chat app using firebase
 
-## Demo
+## Demo - Youtube
 
 [![Project Demo](http://img.youtube.com/vi/BjONq3qL2o0/0.jpg)](http://www.youtube.com/watch?v=BjONq3qL2o0)
 
